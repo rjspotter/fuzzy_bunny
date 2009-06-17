@@ -1,6 +1,6 @@
 module FuzzyBunny
   
-  class Client
+  class Domains
     
     include Typhoeus
     
@@ -10,11 +10,11 @@ module FuzzyBunny
     
     define_remote_method :query, :path => '/?:query_string'
     
-    def self.create_domain(name)
+    def self.create(name)
       query({:query_string => AwsSdb::Request::CreateDomain.new({:name => name}, FuzzyBunny::Configuration.to_hash).uri_query})
     end
     
-    def self.list_domains(number = nil, token = nil)
+    def self.list(number = nil, token = nil)
       if number && token
         opts = {:max => number, :token => token}
       elsif number
@@ -25,11 +25,11 @@ module FuzzyBunny
       query({:query_string => AwsSdb::Request::ListDomains.new(opts, FuzzyBunny::Configuration.to_hash).uri_query}).domains
     end
     
-    def self.delete_domain(name)
+    def self.delete(name)
       query({:query_string => AwsSdb::Request::DeleteDomain.new({:name => name}, FuzzyBunny::Configuration.to_hash).uri_query})
     end
     
-    def self.domain_metadata(name)
+    def self.metadata_for(name)
       query({:query_string => AwsSdb::Request::DomainMetadata.new({:name => name}, FuzzyBunny::Configuration.to_hash).uri_query})
     end
     
