@@ -1,6 +1,11 @@
 = fuzzy_bunny
 
-Description goes here.
+You know how people name their libraries really cool things?  I.e., "named after the sumerian god of war and womanizing"?
+
+This isn't like that.
+
+Fuzzy Bunny: SimpleDB client library built on aws_sdb_bare and typhoeus
+
 
 == Copyright
 
