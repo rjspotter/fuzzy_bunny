@@ -6,7 +6,7 @@ module FuzzyBunny
     
     remote_defaults :on_success => lambda {|response| AwsSdb::Response.parse(response.body)},
                         :on_failure => lambda {|response| puts "error code: #{response.code} \n #{response.body}"},
-                        :base_uri   => ENV['AMAZON_SDB_HOST'] || 'http://localhost:8080'
+                        :base_uri   => ENV['AMAZON_SDB_HOST']
     
     define_remote_method :query, :path => '/?:query_string'
     
@@ -124,6 +124,7 @@ module FuzzyBunny
     
     def self.mass_select_attributes(domain)
       lambda do |d,uuids|
+        uuids = [uuids].flatten
         query({
           :query_string => AwsSdb::Request::Select.new({
             :query => "SELECT * FROM #{d} where #{uuids.map {|u| " itemName() = '#{u}' "}.join('or')}"

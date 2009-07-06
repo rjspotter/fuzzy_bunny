@@ -2,11 +2,6 @@ require File.join(File.dirname(__FILE__), "/../test_helper")
 
 class TestDomains < Test::Unit::TestCase
   
-  
-  setup do
-    FuzzyBunny::Configuration.from_hash({:account => '1234', :secret => 'asdf', :base_uri => 'http://localhost:8080'})
-  end
-    
   context "create" do
     
     should "not raise" do
