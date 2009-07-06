@@ -8,13 +8,15 @@ Fuzzy Bunny: SimpleDB client library built on aws_sdb_bare and typhoeus
 
 = How To
 
+  `sudo gem install rjspotter-fuzzy_bunny`
+
  # set these environment variables first
-ENV['AMAZON_ACCESS_KEY_ID'] = <your id>
-ENV['AMAZON_SECRET_ACCESS_KEY'] = <your secret>
-ENV['AMAZON_SDB_HOST'] = 'http://sdb.amazonaws.com'
+  ENV['AMAZON_ACCESS_KEY_ID'] = <your id>
+  ENV['AMAZON_SECRET_ACCESS_KEY'] = <your secret>
+  ENV['AMAZON_SDB_HOST'] = 'http://sdb.amazonaws.com'
 
  # then require the library
-require 'fuzzy_bunny'
+ require 'fuzzy_bunny'
 
  # Create a Domain
  FuzzyBunny::Domains.create('cool_stuff')
