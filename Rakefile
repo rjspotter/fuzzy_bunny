@@ -3,18 +3,22 @@ require 'rake'
 
 begin
   require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "fuzzy_bunny"
-    gem.summary = %Q{TODO}
-    gem.email = "rjspotter@gmail.com"
-    gem.homepage = "http://github.com/rjspotter/fuzzy_bunny"
-    gem.authors = ["rjspotter"]
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+  Jeweler::Tasks.new do |s|
+    s.name = "fuzzy_bunny"
+    s.summary = "useless client for Amazon's SimpleDB built on aws_sdb_bare and typhoeus"
+    s.email = "rjspotter@gmail.com"
+    s.homepage = "http://github.com/rjspotter/fuzzy_bunny"
+    s.description = "useless client for Amazon's SimpleDB built on aws_sdb_bare and typhoeus"
+    s.authors = ["R. Potter"]
+    s.add_dependency 'facets'
+    s.add_dependency 'nokogiri'
+    s.add_dependency 'hungryblank-aws_sdb_bare'
+    s.add_dependency 'pauldix-typhoeus'
   end
-
 rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
+  puts "Jeweler, or one of its dependencies, is not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
 end
+
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|

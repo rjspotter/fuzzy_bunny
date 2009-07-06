@@ -6,6 +6,48 @@ This isn't like that.
 
 Fuzzy Bunny: SimpleDB client library built on aws_sdb_bare and typhoeus
 
+= How To
+
+ # set these environment variables first
+ENV['AMAZON_ACCESS_KEY_ID'] = <your id>
+ENV['AMAZON_SECRET_ACCESS_KEY'] = <your secret>
+ENV['AMAZON_SDB_HOST'] = 'http://sdb.amazonaws.com'
+
+ # then require the library
+require 'fuzzy_bunny'
+
+ # Create a Domain
+ FuzzyBunny::Domains.create('cool_stuff')
+ 
+ # generate the helper
+ FuzzyBunny::Items.generate('cool_stuff')
+ 
+ # add data
+ CoolStuff.update('cool_document_name', {:fuzzy => 'bunny'})
+ 
+ # retrieve data
+ CoolStuff.find('cool_document_name').items['cool_document_name']['fuzzy'] # => ['bunny']
+ 
+ # add more data
+ CoolStuff.update('cool_document_name', {:fuzzy => 'panther'})
+ 
+ # retrieve data
+ CoolStuff.find('cool_document_name').items['cool_document_name']['fuzzy'] # => ['bunny', 'panther']
+ 
+ #search (AWS simpledb select syntax)
+ CoolStuff.spat("`fuzzy` = bunny").items # => {'cool_document_name' => {'fuzzy' => ["bunny", "panther"]}}
+ 
+ # overwrite
+ CoolStuff.update('cool_document_name', {:fuzzy => {:value => 'minotaur', :replace => true}})
+ 
+ # retrieve data
+ CoolStuff.find('cool_document_name').items['cool_document_name']['fuzzy'] # => ['minotaur']
+ 
+ # destroy document
+ CoolStuff.destroy('cool_document_name')
+ 
+ # delete domain
+ FuzzyBunny::Domains.delete('cool_stuff')
 
 == Copyright
 
